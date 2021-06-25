@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace RepoStatusTable
 {
-	class Program
+	internal class Program
 	{
-		static void Main(string[] args)
+		private static void Main()
 		{
-			Console.WriteLine("Hello World!");
+			var serviceProvider = Bindings.CreateBindings();
+			var app = serviceProvider.GetRequiredService<IApplication>();
+			app.Run();
 		}
 	}
 }
