@@ -1,0 +1,11 @@
+{
+	"Repos": {
+		"ReposRoot": [
+			"./Repos/RootDir"
+		],
+		"RepoDirs": [
+			"./Repos/AnotherRepo1",
+			"./Repos/AnotherRepo2"
+		]
+	}
+}
