@@ -1,7 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using RepoStatusTable.Facade;
 using RepoStatusTable.Options;
+using RepoStatusTable.Options.Validation;
 using RepoStatusTable.Renderer;
 
 namespace RepoStatusTable
@@ -56,6 +59,11 @@ namespace RepoStatusTable
 		{
 			var configurationRoot = ConfigureConfiguration();
 			_collection.Configure<RepoOptions>( configurationRoot.GetSection( "Repos" ) );
+
+			_collection.TryAddEnumerable(
+				ServiceDescriptor.Singleton
+					<IValidateOptions<RepoOptions>, RepoOptionsValidator>() );
+
 			return this;
 		}
 	}
