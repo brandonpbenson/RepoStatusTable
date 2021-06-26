@@ -1,8 +1,5 @@
-using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using RepoStatusTable.Options;
-using Spectre.Console;
+using RepoStatusTable.Renderer;
 
 namespace RepoStatusTable
 {
@@ -13,18 +10,16 @@ namespace RepoStatusTable
 
 	public class Application : IApplication
 	{
-		private readonly RepoOptions _repoOptions;
+		private readonly ITableRenderer _tableRenderer;
 
-		public Application( IOptions<RepoOptions> repoOptions )
+		public Application( ITableRenderer tableRenderer )
 		{
-			_repoOptions = repoOptions.Value;
+			_tableRenderer = tableRenderer;
 		}
 
 		public async Task RunAsync()
 		{
-			await AnsiConsole.Status().StartAsync( "Thinking", async _ => { await Task.Delay( 1000 ); } );
-			foreach ( var dir in _repoOptions.RepoDirs ) Console.WriteLine( dir );
-			foreach ( var dir in _repoOptions.ReposRoot ) Console.WriteLine( dir );
+			await _tableRenderer.RenderAsync();
 		}
 	}
 }

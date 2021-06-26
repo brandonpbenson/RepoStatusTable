@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RepoStatusTable.Options;
+using RepoStatusTable.Renderer;
 
 namespace RepoStatusTable
 {
@@ -28,6 +29,7 @@ namespace RepoStatusTable
 		public ServiceProviderBuilder ConfigureServices()
 		{
 			_collection.AddSingleton<IApplication, Application>();
+			_collection.AddSingleton<ITableRenderer, SpectreConsoleTableRenderer>();
 			return this;
 		}
 

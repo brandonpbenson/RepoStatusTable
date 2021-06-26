@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace RepoStatusTable
 {
-	internal class Program
+	internal static class Program
 	{
 		private static async Task Main()
 		{
