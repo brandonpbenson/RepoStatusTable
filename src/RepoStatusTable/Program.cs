@@ -1,14 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RepoStatusTable
 {
 	internal class Program
 	{
-		private static void Main()
+		private static async Task Main()
 		{
 			var serviceProvider = Bindings.CreateBindings();
 			var app = serviceProvider.GetRequiredService<IApplication>();
-			app.Run();
+			await app.RunAsync();
 		}
 	}
 }
