@@ -4,7 +4,7 @@ using LibGit2Sharp;
 
 namespace RepoStatusTable.Facade
 {
-	public interface IGitFacade : IVscFacade
+	public interface IGitFacade : IVcsFacade
 	{
 		string GetCurrentBranch( string path );
 
@@ -13,7 +13,7 @@ namespace RepoStatusTable.Facade
 
 	public class GitFacade : IGitFacade
 	{
-		public bool IsVscRepo( string path )
+		public bool IsVcsRepo( string path )
 		{
 			return IsGitRepo( path );
 		}

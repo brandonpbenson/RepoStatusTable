@@ -38,7 +38,7 @@ namespace RepoStatusTable
 			_collection.AddSingleton<ITableRenderer, SpectreConsoleTableRenderer>();
 
 			// Facades
-			_collection.AddSingleton<IVscFacade, GitFacade>();
+			_collection.AddSingleton<IVcsFacade, GitFacade>();
 			_collection.AddSingleton<IGitFacade, GitFacade>();
 			_collection.AddSingleton<IFileSystemFacade, FileSystemFacade>();
 
