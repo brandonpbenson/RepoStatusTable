@@ -8,11 +8,11 @@ namespace RepoStatusTable.Options.Validation
 	public class RepoOptionsValidator : IValidateOptions<RepoOptions>
 	{
 		private readonly IFileSystemFacade _fileSystemFacade;
-		private readonly IVscFacade _vscFacade;
+		private readonly IVcsFacade _vcsFacade;
 
-		public RepoOptionsValidator( IVscFacade vscFacade, IFileSystemFacade fileSystemFacade )
+		public RepoOptionsValidator( IVcsFacade vcsFacade, IFileSystemFacade fileSystemFacade )
 		{
-			_vscFacade = vscFacade;
+			_vcsFacade = vcsFacade;
 			_fileSystemFacade = fileSystemFacade;
 		}
 
@@ -30,8 +30,8 @@ namespace RepoStatusTable.Options.Validation
 		private IEnumerable<string> ValidateRepoDirs( IEnumerable<string> paths )
 		{
 			return paths
-				.Where( path => !_vscFacade.IsVscRepo( path ) )
-				.Select( path => $"No VSC repo found in path {path}" );
+				.Where( path => !_vcsFacade.IsVcsRepo( path ) )
+				.Select( path => $"No VCS repository found in path {path}" );
 		}
 
 		private IEnumerable<string> ValidateReposRoot( IEnumerable<string> paths )
