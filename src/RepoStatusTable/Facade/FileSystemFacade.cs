@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace RepoStatusTable.Facade
 {
@@ -15,7 +16,7 @@ namespace RepoStatusTable.Facade
 
 		bool Exists( string path );
 
-		string ReadAllText( string path );
+		Task<string> ReadAllText( string path );
 	}
 
 	public class FileSystemFacade : IFileSystemFacade
@@ -46,9 +47,9 @@ namespace RepoStatusTable.Facade
 			return File.Exists( path );
 		}
 
-		public string ReadAllText( string path )
+		public Task<string> ReadAllText( string path )
 		{
-			return File.ReadAllText( path );
+			return File.ReadAllTextAsync( path );
 		}
 	}
 }
