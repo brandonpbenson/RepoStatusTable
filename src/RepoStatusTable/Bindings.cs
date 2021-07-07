@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using RepoStatusTable.CellProviders;
 using RepoStatusTable.Facade;
 using RepoStatusTable.Options;
 using RepoStatusTable.Options.Validation;
@@ -42,18 +43,13 @@ namespace RepoStatusTable
 			_collection.AddSingleton<IGitFacade, GitFacade>();
 			_collection.AddSingleton<IFileSystemFacade, FileSystemFacade>();
 
+			// Cell Providers
+			_collection.AddSingleton<ICellProvider, DirectoryNameProvider>();
+			_collection.AddSingleton<ICellProvider, GitBranchProvider>();
+
 			return this;
 		}
 
-		private static IConfigurationRoot ConfigureConfiguration()
-		{
-			var configurationBuilder = new ConfigurationBuilder();
-
-			configurationBuilder.Sources.Clear();
-			configurationBuilder.AddJsonFile( "config.dev.json" );
-
-			return configurationBuilder.Build();
-		}
 
 		public ServiceProviderBuilder ConfigureOptions()
 		{
@@ -65,6 +61,16 @@ namespace RepoStatusTable
 					<IValidateOptions<RepoOptions>, RepoOptionsValidator>() );
 
 			return this;
+		}
+
+		private static IConfigurationRoot ConfigureConfiguration()
+		{
+			var configurationBuilder = new ConfigurationBuilder();
+
+			configurationBuilder.Sources.Clear();
+			configurationBuilder.AddJsonFile( "config.dev.json" );
+
+			return configurationBuilder.Build();
 		}
 	}
 }
