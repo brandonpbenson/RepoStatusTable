@@ -14,7 +14,7 @@ namespace RepoStatusTable.Facade
 
 		string Join( string path1, string path2 );
 
-		bool Exists( string path );
+		bool DirectoryExists( string path );
 
 		Task<string> ReadAllText( string path );
 	}
@@ -42,14 +42,19 @@ namespace RepoStatusTable.Facade
 			return Path.Join( path1, path2 );
 		}
 
-		public bool Exists( string path )
+		public bool DirectoryExists( string path )
 		{
-			return File.Exists( path );
+			return Directory.Exists( path );
 		}
 
 		public Task<string> ReadAllText( string path )
 		{
 			return File.ReadAllTextAsync( path );
+		}
+
+		public bool FileExists( string path )
+		{
+			return File.Exists( path );
 		}
 	}
 }
