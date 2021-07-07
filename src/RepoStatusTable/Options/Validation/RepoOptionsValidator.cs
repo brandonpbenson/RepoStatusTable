@@ -37,7 +37,7 @@ namespace RepoStatusTable.Options.Validation
 		private IEnumerable<string> ValidateReposRoot( IEnumerable<string> paths )
 		{
 			return paths
-				.Where( path => !_fileSystemFacade.Exists( path ) )
+				.Where( path => !_fileSystemFacade.DirectoryExists( path ) )
 				.Select( path => $"Directory {path} does not exist" );
 		}
 	}
