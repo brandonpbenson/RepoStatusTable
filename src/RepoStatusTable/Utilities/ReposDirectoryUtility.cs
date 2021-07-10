@@ -6,7 +6,7 @@ using RepoStatusTable.Options;
 
 namespace RepoStatusTable.Utilities
 {
-	public class ReposDirectoryUtility
+	public class ReposDirectoryUtility : IReposDirectoryUtility
 	{
 		private readonly IFileSystemFacade _fileSystemFacade;
 		private readonly RepoOptions _repoOptions;
@@ -22,6 +22,7 @@ namespace RepoStatusTable.Utilities
 			_repoOptions = repoOptions.Value;
 		}
 
+		/// <inheritdoc/>
 		public IEnumerable<string> GetRepoDirectories()
 		{
 			var repos = new List<string>();

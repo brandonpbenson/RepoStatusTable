@@ -1,8 +1,5 @@
-using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using RepoStatusTable.Options;
-using RepoStatusTable.Renderer;
+using RepoStatusTable.View;
 
 namespace RepoStatusTable
 {
@@ -13,19 +10,16 @@ namespace RepoStatusTable
 
 	public class Application : IApplication
 	{
-		private readonly IOptions<RepoOptions> _repoOptions;
-		private readonly ITableRenderer _tableRenderer;
+		private readonly ITableView _tableView;
 
-		public Application( ITableRenderer tableRenderer, IOptions<RepoOptions> repoOptions )
+		public Application( ITableView tableView )
 		{
-			_tableRenderer = tableRenderer;
-			_repoOptions = repoOptions;
+			_tableView = tableView;
 		}
 
 		public async Task RunAsync()
 		{
-			Console.WriteLine( _repoOptions.Value.RepoDirs );
-			await _tableRenderer.RenderAsync();
+			await _tableView.RenderAsync();
 		}
 	}
 }

@@ -4,9 +4,11 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using RepoStatusTable.CellProviders;
 using RepoStatusTable.Facade;
+using RepoStatusTable.Model;
 using RepoStatusTable.Options;
 using RepoStatusTable.Options.Validation;
-using RepoStatusTable.Renderer;
+using RepoStatusTable.Utilities;
+using RepoStatusTable.View;
 
 namespace RepoStatusTable
 {
@@ -35,8 +37,9 @@ namespace RepoStatusTable
 		{
 			_collection.AddSingleton<IApplication, Application>();
 
-			// Output Rendering
-			_collection.AddSingleton<ITableRenderer, SpectreConsoleTableRenderer>();
+			// Model and view
+			_collection.AddSingleton<ITableModel, TableModel>();
+			_collection.AddSingleton<ITableView, SpectreConsoleTableView>();
 
 			// Facades
 			_collection.AddSingleton<IVcsFacade, GitFacade>();
@@ -46,6 +49,9 @@ namespace RepoStatusTable
 			// Cell Providers
 			_collection.AddSingleton<ICellProvider, DirectoryNameProvider>();
 			_collection.AddSingleton<ICellProvider, GitBranchProvider>();
+			
+			// Utilities
+			_collection.AddSingleton<IReposDirectoryUtility, ReposDirectoryUtility>();
 
 			return this;
 		}
