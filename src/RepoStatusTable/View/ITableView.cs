@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 
-namespace RepoStatusTable.Renderer
+namespace RepoStatusTable.View
 {
-	public interface ITableRenderer
+	public interface ITableView
 	{
 		public Task RenderAsync();
 	}
