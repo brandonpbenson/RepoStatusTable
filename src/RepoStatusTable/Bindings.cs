@@ -49,7 +49,8 @@ namespace RepoStatusTable
 			// Cell Providers
 			_collection.AddSingleton<ICellProvider, DirectoryNameProvider>();
 			_collection.AddSingleton<ICellProvider, GitBranchProvider>();
-			
+			_collection.AddSingleton<ICellProvider, GitStatusProvider>();
+
 			// Utilities
 			_collection.AddSingleton<IReposDirectoryUtility, ReposDirectoryUtility>();
 
@@ -74,7 +75,9 @@ namespace RepoStatusTable
 			var configurationBuilder = new ConfigurationBuilder();
 
 			configurationBuilder.Sources.Clear();
-			configurationBuilder.AddJsonFile( "config.dev.json" );
+			configurationBuilder
+				.AddJsonFile( "config.json" )
+				.AddJsonFile( "config.dev.json", true );
 
 			return configurationBuilder.Build();
 		}
