@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 
 namespace RepoStatusTable.Facade
 {
+	/// <summary>
+	/// Facade for System.IO
+	/// Handles all calls that directly access information about the file system
+	/// </summary>
 	public interface IFileSystemFacade
 	{
 		string GetFullPath( string path );
