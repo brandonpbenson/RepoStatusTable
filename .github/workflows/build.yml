@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [ trunk ]
+  pull_request:
+    branches: [ trunk ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.8.1
+
+      - name: Install dependencies
+        working-directory: ./src/
+        run: dotnet restore
+
+      - name: Build
+        working-directory: ./src/
+        run: dotnet build
