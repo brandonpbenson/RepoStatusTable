@@ -1,0 +1,50 @@
+name: Publish
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/'
+      RELEASE_ARCHIVE: 'RepoStatusTable.zip'
+      RELEASE_ARCHIVE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/RepoStatusTable.zip'
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1.8.1
+
+      - name: Install Dependencies
+        working-directory: ./src/
+        run: dotnet restore
+
+      - name: Publish
+        working-directory: ./src/
+        run: dotnet publish -c Release
+      
+      - name: Create Archive
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: ${{ env.RELEASE_ARCHIVE }}
+          directory: ${{ env.RELEASE_PATH }}
+          path: .
+          
+      - name: Upload Archive
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ env.RELEASE_ARCHIVE_PATH }}
+          
+      - name: Release Archive
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ${{ env.RELEASE_ARCHIVE_PATH }}
+          token: ${{ secrets.GITHUB_TOKEN }}
