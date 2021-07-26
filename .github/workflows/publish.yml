@@ -28,7 +28,7 @@ jobs:
 
       - name: Publish
         working-directory: ./src/
-        run: dotnet publish -c Release
+        run: dotnet publish --configuration Release --no-restore
       
       - name: Create Archive
         uses: thedoctor0/zip-release@master
