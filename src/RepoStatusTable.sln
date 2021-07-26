@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoStatusTable", "RepoStatusTable\RepoStatusTable.csproj", "{24F0FD18-7E34-4F28-AFB2-AD1E69D783E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoStatusTable.UnitTests", "..\test\RepoStatusTable.UnitTests\RepoStatusTable.UnitTests.csproj", "{6C024B51-00C3-4F29-A772-4B3A245FCCB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{24F0FD18-7E34-4F28-AFB2-AD1E69D783E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F0FD18-7E34-4F28-AFB2-AD1E69D783E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F0FD18-7E34-4F28-AFB2-AD1E69D783E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
