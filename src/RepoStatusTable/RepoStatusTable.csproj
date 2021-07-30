@@ -4,6 +4,20 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <Nullable>enable</Nullable>
+        
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>rst</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+        
+        <PackageVersion>0.1.0</PackageVersion>
+        <Title>RepoStatusTable</Title>
+        <Authors>github.com/MaxAtoms</Authors>
+        <Description>Overview of the status of your repositories in tabular form</Description>
+        <Copyright>GPL-3.0</Copyright>
+        <PackageProjectUrl>https://github.com/MaxAtoms/RepoStatusTable</PackageProjectUrl>
+        <PackageLicense>https://github.com/MaxAtoms/RepoStatusTable/blob/trunk/LICENSE</PackageLicense>
+        <RepositoryUrl>https://github.com/MaxAtoms/RepoStatusTable</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
