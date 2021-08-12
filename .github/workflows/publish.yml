@@ -3,15 +3,17 @@ name: Publish
 on:
   push:
     tags:
-    - '*'
+      - '*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     env:
       RELEASE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/'
-      RELEASE_ARCHIVE: 'RepoStatusTable.zip'
-      RELEASE_ARCHIVE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/RepoStatusTable.zip'
+      RELEASE_ARCHIVE: 'RepoStatusTable.linux-amd64.zip'
+      RELEASE_ARCHIVE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/RepoStatusTable.linux-amd64.zip'
+      RELEASE_NUPKG: 'RepoStatusTable.linux-amd64.nupkg'
+      RELEASE_NUPKG_PATH: './src/RepoStatusTable/nupkg/*.nupkg'
       DOTNET_NOLOGO: true
       DOTNET_CLI_TELEMETRY_OPTOUT: true
 
@@ -29,22 +31,33 @@ jobs:
       - name: Publish
         working-directory: ./src/
         run: dotnet publish --configuration Release --no-restore
-      
-      - name: Create Archive
+
+      - name: Pack
+        working-directory: ./src/
+        run: dotnet pack --configuration Release --no-restore
+
+      - name: Create ZIP archive
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
           filename: ${{ env.RELEASE_ARCHIVE }}
           directory: ${{ env.RELEASE_PATH }}
           path: .
-          
-      - name: Upload Archive
+
+      - name: Upload ZIP archive as artifact
         uses: actions/upload-artifact@v2
         with:
+          name: ${{ env.RELEASE_ARCHIVE }}
           path: ${{ env.RELEASE_ARCHIVE_PATH }}
           
-      - name: Release Archive
+      - name: Upload NuGet package as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.RELEASE_NUPKG }}
+          path: ${{ env.RELEASE_NUPKG_PATH }}
+
+      - name: Release archive and NuGet package
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ env.RELEASE_ARCHIVE_PATH }}
+          artifacts: ${{ env.RELEASE_ARCHIVE_PATH }}, ${{ env.RELEASE_NUPKG_PATH }}
           token: ${{ secrets.GITHUB_TOKEN }}
