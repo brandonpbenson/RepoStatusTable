@@ -49,7 +49,7 @@ jobs:
         with:
           name: ${{ env.RELEASE_ARCHIVE }}
           path: ${{ env.RELEASE_ARCHIVE_PATH }}
-          
+
       - name: Upload NuGet package as artifact
         uses: actions/upload-artifact@v2
         with:
@@ -61,3 +61,19 @@ jobs:
         with:
           artifacts: ${{ env.RELEASE_ARCHIVE_PATH }}, ${{ env.RELEASE_NUPKG_PATH }}
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add GitHub NuGet registry as source
+        run: |
+          dotnet nuget add source \
+            --username MaxAtoms \
+            --password ${{ secrets.GITHUB_TOKEN }} \
+            --store-password-in-clear-text \
+            --name github \
+            "https://nuget.pkg.github.com/MaxAtoms/index.json"
+
+      - name: Publish NuGet package to NuGet registry
+        run: |
+          dotnet nuget push \
+          ${{ env.RELEASE_NUPKG_PATH }} \
+          --api-key ${{ secrets.GITHUB_TOKEN }} \
+          --source "github"
