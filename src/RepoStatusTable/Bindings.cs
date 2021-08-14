@@ -86,11 +86,18 @@ namespace RepoStatusTable
 
 			configurationBuilder.Sources.Clear();
 			configurationBuilder
-				.AddJsonFile( "config.json" )
+				.AddJsonFile( "config.json", true )
 				.AddJsonFile( homeDirConfig, true )
 				.AddJsonFile( workingDirConfig, true );
 
-			return configurationBuilder.Build();
+			var configRoot = configurationBuilder.Build();
+
+			if ( configRoot.GetChildren().ToList().Count == 0 )
+			{
+				throw new ArgumentException( "No valid config given" );
+			}
+
+			return configRoot;
 		}
 	}
 }
