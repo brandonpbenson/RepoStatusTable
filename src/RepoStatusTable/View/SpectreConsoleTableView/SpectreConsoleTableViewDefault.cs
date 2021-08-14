@@ -3,47 +3,44 @@ using System.Threading.Tasks;
 using RepoStatusTable.Model;
 using Spectre.Console;
 
-namespace RepoStatusTable.View
+namespace RepoStatusTable.View.SpectreConsoleTableView
 {
-	public class SpectreConsoleTableView : ITableView
+	public class SpectreConsoleTableViewDefault : ITableViewStrategy
 	{
 		private readonly ITableModel _tableModel;
 
-		public SpectreConsoleTableView( ITableModel tableModel )
+		public SpectreConsoleTableViewDefault( ITableModel tableModel )
 		{
 			_tableModel = tableModel;
 		}
+
+		public string RenderMethod => "Spectre Table";
 
 		public async Task RenderAsync()
 		{
 			var table = new Table().Centered();
 
-			await AnsiConsole.Live( table )
-				.StartAsync( async ctx =>
-					{
-						RenderHeadings( table, ctx );
-						await RenderRows( table, ctx );
-					}
-				);
+			RenderHeadings( table );
+			await RenderRows( table );
+
+			AnsiConsole.Render( table );
 		}
 
-		private void RenderHeadings( Table table, LiveDisplayContext ctx )
+		private void RenderHeadings( Table table )
 		{
 			foreach ( var heading in _tableModel.GetHeadings() )
 			{
 				table.AddColumn( heading );
-				ctx.Refresh();
 			}
 		}
 
-		private async Task RenderRows( Table table, LiveDisplayContext ctx )
+		private async Task RenderRows( Table table )
 		{
 			await foreach ( var row in _tableModel.GetTableAsync() )
 			{
 				var tableRow = await row.ToArrayAsync();
 				table.AddRow( tableRow );
-				ctx.Refresh();
-			}	
+			}
 		}
 	}
 }

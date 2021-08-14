@@ -8,6 +8,9 @@
 			"/path/to/a/repo/2"
 		]
 	},
+	"TableView": {
+		"RenderMethod": "Spectre Table"
+	},
 	"CellProviders": {
 		"DirectoryNameProvider": {
 			"Enable": false
