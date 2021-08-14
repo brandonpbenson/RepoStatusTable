@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -10,6 +9,7 @@ using RepoStatusTable.CellProviders;
 using RepoStatusTable.Facade;
 using RepoStatusTable.Model;
 using RepoStatusTable.Options;
+using RepoStatusTable.Options.CellProvider;
 using RepoStatusTable.Options.Validation;
 using RepoStatusTable.Utilities;
 using RepoStatusTable.View;
@@ -66,6 +66,12 @@ namespace RepoStatusTable
 		{
 			var configurationRoot = ConfigureConfiguration();
 			_collection.Configure<RepoOptions>( configurationRoot.GetSection( "Repos" ) );
+			_collection.Configure<DirectoryNameProviderOptions>(
+				configurationRoot.GetSection( "CellProviders:DirectoryNameProvider" ) );
+			_collection.Configure<GitBranchProviderOptions>(
+				configurationRoot.GetSection( "CellProviders:GitBranchProvider" ) );
+			_collection.Configure<GitStatusProviderOptions>(
+				configurationRoot.GetSection( "CellProviders:GitStatusProvider" ) );
 
 			_collection.TryAddEnumerable(
 				ServiceDescriptor.Singleton
@@ -80,7 +86,7 @@ namespace RepoStatusTable
 
 			var homeDir = Environment.GetFolderPath( Environment.SpecialFolder.UserProfile );
 			var homeDirConfig = Path.Join( homeDir, "RepoStatusTableConfig.json" );
-			
+
 			var workingDir = Directory.GetCurrentDirectory();
 			var workingDirConfig = Path.Join( workingDir, "RepoStatusTableConfig.json" );
 

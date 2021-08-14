@@ -1,21 +1,26 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using RepoStatusTable.Facade;
+using RepoStatusTable.Options.CellProvider;
 
 namespace RepoStatusTable.CellProviders
 {
 	public class GitStatusProvider : ICellProvider
 	{
 		private readonly IGitFacade _gitFacade;
+		private readonly GitStatusProviderOptions _options;
+
+		public GitStatusProvider( IOptions<GitStatusProviderOptions> options, IGitFacade gitFacade )
+		{
+			_options = options.Value;
+			_gitFacade = gitFacade;
+		}
 
 		public string Heading => "Status";
 
-		public GitStatusProvider( [NotNull] IGitFacade gitFacade )
-		{
-			_gitFacade = gitFacade;
-		}
+		public bool IsEnabled => _options.Enable;
 
 		public Task<Cell> GetCell( string directory )
 		{
