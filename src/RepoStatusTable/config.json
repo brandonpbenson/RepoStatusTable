@@ -7,5 +7,16 @@
 			"/path/to/a/repo/1",
 			"/path/to/a/repo/2"
 		]
+	},
+	"CellProviders": {
+		"DirectoryNameProvider": {
+			"Enable": false
+		},
+		"GitBranchProvider": {
+			"Enable": false
+		},
+		"GitStatusProvider": {
+			"Enable": false
+		}
 	}
 }

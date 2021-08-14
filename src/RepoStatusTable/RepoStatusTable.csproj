@@ -9,7 +9,7 @@
         <ToolCommandName>rst</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
         
-        <PackageVersion>0.1.0</PackageVersion>
+        <PackageVersion>0.2</PackageVersion>
         <Title>RepoStatusTable</Title>
         <Authors>github.com/MaxAtoms</Authors>
         <Description>Overview of the status of your repositories in tabular form</Description>
