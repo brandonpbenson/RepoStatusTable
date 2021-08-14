@@ -60,6 +60,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: ${{ env.RELEASE_ARCHIVE_PATH }}, ${{ env.RELEASE_NUPKG_PATH }}
+          bodyFile: RELEASENOTES.md
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add GitHub NuGet registry as source
