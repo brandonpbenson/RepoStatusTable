@@ -13,6 +13,7 @@ using RepoStatusTable.Options.CellProvider;
 using RepoStatusTable.Options.Validation;
 using RepoStatusTable.Utilities;
 using RepoStatusTable.View;
+using RepoStatusTable.View.SpectreConsoleTableView;
 
 namespace RepoStatusTable
 {
@@ -43,7 +44,9 @@ namespace RepoStatusTable
 
 			// Model and view
 			_collection.AddSingleton<ITableModel, TableModel>();
-			_collection.AddSingleton<ITableView, SpectreConsoleTableView>();
+			_collection.AddSingleton<ITableViewStrategy, SpectreConsoleTableViewLive>();
+			_collection.AddSingleton<ITableViewStrategy, SpectreConsoleTableViewDefault>();
+			_collection.AddSingleton<ITableView, TableViewProxy>();
 
 			// Facades
 			_collection.AddSingleton<IVcsFacade, GitFacade>();
@@ -66,6 +69,7 @@ namespace RepoStatusTable
 		{
 			var configurationRoot = ConfigureConfiguration();
 			_collection.Configure<RepoOptions>( configurationRoot.GetSection( "Repos" ) );
+			_collection.Configure<TableViewOptions>( configurationRoot.GetSection( "TableView" ) );
 			_collection.Configure<DirectoryNameProviderOptions>(
 				configurationRoot.GetSection( "CellProviders:DirectoryNameProvider" ) );
 			_collection.Configure<GitBranchProviderOptions>(
