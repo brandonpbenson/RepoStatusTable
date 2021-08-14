@@ -9,6 +9,13 @@ namespace RepoStatusTable.CellProviders
 		/// </summary>
 		public string Heading { get; }
 
+
+		/// <summary>
+		///     Determine whether the output of the cell provider should be shown in the output model
+		/// </summary>
+		/// <returns>True if enabled, false otherwise</returns>
+		public bool IsEnabled { get; }
+
 		/// <summary>
 		///     Takes a directory path and returns the corresponding cell for the table
 		/// </summary>

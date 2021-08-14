@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RepoStatusTable.CellProviders;
@@ -12,19 +13,26 @@ namespace RepoStatusTable.Model
 
 		public TableModel( IEnumerable<ICellProvider> cellProviders, IReposDirectoryUtility reposDirectoryUtility )
 		{
-			_cellProviders = cellProviders;
+			_cellProviders = GetEnabledCellProviders( cellProviders );
 			_reposDirectoryUtility = reposDirectoryUtility;
 		}
 
 		public IEnumerable<string> GetHeadings() =>
-			from provider in _cellProviders select provider.Heading;
+			_cellProviders.Select( p => p.Heading );
 
 		public async IAsyncEnumerable<IAsyncEnumerable<string>> GetTableAsync()
 		{
+			if ( !_cellProviders.Any() ) throw new ArgumentException( "No cell providers are enabled" );
+
 			foreach ( var dir in _reposDirectoryUtility.GetRepoDirectories() )
 			{
 				yield return GetRowsAsync( dir );
 			}
+		}
+
+		private static IEnumerable<ICellProvider> GetEnabledCellProviders( IEnumerable<ICellProvider> cellProviders )
+		{
+			return cellProviders.Where( p => p.IsEnabled );
 		}
 
 		private async IAsyncEnumerable<string> GetRowsAsync( string path )

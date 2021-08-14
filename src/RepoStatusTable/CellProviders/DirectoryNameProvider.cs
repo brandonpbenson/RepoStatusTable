@@ -1,19 +1,25 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using RepoStatusTable.Facade;
+using RepoStatusTable.Options.CellProvider;
 
 namespace RepoStatusTable.CellProviders
 {
 	public class DirectoryNameProvider : ICellProvider
 	{
 		private readonly IFileSystemFacade _fileSystemFacade;
+		private readonly DirectoryNameProviderOptions _options;
 
-		public DirectoryNameProvider( [NotNull] IFileSystemFacade filesystemFacade )
+		public DirectoryNameProvider( IOptions<DirectoryNameProviderOptions> options,
+			IFileSystemFacade fileSystemFacade )
 		{
-			_fileSystemFacade = filesystemFacade;
+			_fileSystemFacade = fileSystemFacade;
+			_options = options.Value;
 		}
 
 		public string Heading => "Name";
+
+		public bool IsEnabled => _options.Enable;
 
 		public Task<Cell> GetCell( string directory )
 		{

@@ -1,18 +1,24 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using RepoStatusTable.Facade;
+using RepoStatusTable.Options.CellProvider;
 
 namespace RepoStatusTable.CellProviders
 {
 	public class GitBranchProvider : ICellProvider
 	{
 		private readonly IGitFacade _gitFacade;
+		private readonly GitBranchProviderOptions _options;
 
-		public GitBranchProvider( IGitFacade gitFacade )
+		public GitBranchProvider( IOptions<GitBranchProviderOptions> options, IGitFacade gitFacade )
 		{
+			_options = options.Value;
 			_gitFacade = gitFacade;
 		}
 
 		public string Heading => "Branch";
+
+		public bool IsEnabled => _options.Enable;
 
 		public Task<Cell> GetCell( string path )
 		{
