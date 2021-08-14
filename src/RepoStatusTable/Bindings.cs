@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -74,10 +78,17 @@ namespace RepoStatusTable
 		{
 			var configurationBuilder = new ConfigurationBuilder();
 
+			var homeDir = Environment.GetFolderPath( Environment.SpecialFolder.UserProfile );
+			var homeDirConfig = Path.Join( homeDir, "RepoStatusTableConfig.json" );
+			
+			var workingDir = Directory.GetCurrentDirectory();
+			var workingDirConfig = Path.Join( workingDir, "RepoStatusTableConfig.json" );
+
 			configurationBuilder.Sources.Clear();
 			configurationBuilder
 				.AddJsonFile( "config.json" )
-				.AddJsonFile( "config.dev.json", true );
+				.AddJsonFile( homeDirConfig, true )
+				.AddJsonFile( workingDirConfig, true );
 
 			return configurationBuilder.Build();
 		}
