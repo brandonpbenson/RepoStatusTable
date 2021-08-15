@@ -88,16 +88,16 @@ namespace RepoStatusTable
 		{
 			var configurationBuilder = new ConfigurationBuilder();
 
-			var homeDir = Environment.GetFolderPath( Environment.SpecialFolder.UserProfile );
-			var homeDirConfig = Path.Join( homeDir, "RepoStatusTableConfig.json" );
+			var appdataDir = Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData );
+			var appdataDirConfig = Path.Join( appdataDir, "RepoStatusTable", ".config" );
 
 			var workingDir = Directory.GetCurrentDirectory();
-			var workingDirConfig = Path.Join( workingDir, "RepoStatusTableConfig.json" );
+			var workingDirConfig = Path.Join( workingDir, "rstconfig.json" );
 
 			configurationBuilder.Sources.Clear();
 			configurationBuilder
 				.AddJsonFile( "config.json", true )
-				.AddJsonFile( homeDirConfig, true )
+				.AddJsonFile( appdataDir, true )
 				.AddJsonFile( workingDirConfig, true );
 
 			var configRoot = configurationBuilder.Build();
