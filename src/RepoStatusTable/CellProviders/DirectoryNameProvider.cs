@@ -17,7 +17,7 @@ namespace RepoStatusTable.CellProviders
 			_options = options.Value;
 		}
 
-		public string Heading => "Name";
+		public string Heading => _options.Heading ?? "Name";
 
 		public bool IsEnabled => _options.Enable;
 

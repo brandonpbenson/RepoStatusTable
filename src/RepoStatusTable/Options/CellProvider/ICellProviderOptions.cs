@@ -9,6 +9,11 @@ namespace RepoStatusTable.Options.CellProvider
 		/// </summary>
 		/// <value>True to enable, false to disable</value>
 		[Required]
-		public bool Enable { get; }
+		public bool Enable { get; set; }
+
+		/// <summary>
+		///     Optional alternative column heading that appears in the output model
+		/// </summary>
+		public string? Heading { get; set; }
 	}
 }

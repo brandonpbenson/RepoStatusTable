@@ -10,7 +10,7 @@ namespace RepoStatusTable.DependencyInjection
 			private const string Base = "CellProviders";
 			public static readonly string DirectoryNameProvider = $"{Base}:DirectoryNameProvider";
 			public static readonly string GitBranchProvider = $"{Base}:GitBranchProvider";
-			public static readonly string GitStatusProvider = $"{Base}:GitBranchProvider";
+			public static readonly string GitStatusProvider = $"{Base}:GitStatusProvider";
 		}
 	}
 }
