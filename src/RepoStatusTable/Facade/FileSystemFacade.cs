@@ -1,26 +1,31 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace RepoStatusTable.Facade
 {
 	/// <summary>
-	/// Facade for System.IO
-	/// Handles all calls that directly access information about the file system
+	///     Facade for <see cref="System.IO" />
+	///     Handles all calls that directly access information about the file system
 	/// </summary>
 	public interface IFileSystemFacade
 	{
+		/// <inheritdoc cref="Path.GetFullPath(string)" />
 		string GetFullPath( string path );
 
+		/// <inheritdoc cref="Directory.GetDirectories(string)" />
 		IEnumerable<string> GetDirectories( string path );
 
+		/// <inheritdoc cref="DirectoryInfo.Name" />
 		string GetDirectoryName( string path );
 
+		/// <inheritdoc cref="Path.Join(string, string)" />
 		string Join( string path1, string path2 );
 
+		/// <inheritdoc cref="DirectoryExists" />
 		bool DirectoryExists( string path );
 
-		Task<string> ReadAllText( string path );
+		/// <inheritdoc cref="File.ReadLines(string)" />
+		IEnumerable<string> ReadText( string path );
 	}
 
 	public class FileSystemFacade : IFileSystemFacade
@@ -51,14 +56,9 @@ namespace RepoStatusTable.Facade
 			return Directory.Exists( path );
 		}
 
-		public Task<string> ReadAllText( string path )
+		public IEnumerable<string> ReadText( string path )
 		{
-			return File.ReadAllTextAsync( path );
-		}
-
-		public bool FileExists( string path )
-		{
-			return File.Exists( path );
+			return File.ReadLines( path );
 		}
 	}
 }

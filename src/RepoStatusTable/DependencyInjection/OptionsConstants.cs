@@ -11,6 +11,7 @@ namespace RepoStatusTable.DependencyInjection
 			public static readonly string DirectoryNameProvider = $"{Base}:DirectoryNameProvider";
 			public static readonly string GitBranchProvider = $"{Base}:GitBranchProvider";
 			public static readonly string GitStatusProvider = $"{Base}:GitStatusProvider";
+			public static readonly string FileContentProvider = $"{Base}:FileContentProvider";
 		}
 	}
 }

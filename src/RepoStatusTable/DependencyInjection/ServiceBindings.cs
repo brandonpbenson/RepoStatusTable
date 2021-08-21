@@ -36,6 +36,7 @@ namespace RepoStatusTable.DependencyInjection
 			_collection.AddSingleton<ICellProvider, DirectoryNameProvider>();
 			_collection.AddSingleton<ICellProvider, GitBranchProvider>();
 			_collection.AddSingleton<ICellProvider, GitStatusProvider>();
+			_collection.AddSingleton<ICellProvider, FileContentProvider>();
 
 			// Utilities
 			_collection.AddSingleton<IReposDirectoryUtility, ReposDirectoryUtility>();
