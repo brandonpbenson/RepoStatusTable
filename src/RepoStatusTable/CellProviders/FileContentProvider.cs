@@ -20,7 +20,7 @@ namespace RepoStatusTable.CellProviders
 			_fileSystemFacade = fileSystemFacade;
 		}
 
-		public string Heading => _options.Heading ?? "File Content";
+		public string Heading => _options.Heading;
 
 		public bool IsEnabled => _options.Enable;
 

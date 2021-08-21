@@ -1,5 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace RepoStatusTable.Options.CellProvider
 {
+	[SuppressMessage( "ReSharper", "UnusedAutoPropertyAccessor.Global" )]
+	[SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
 	public class DirectoryNameProviderOptions : ICellProviderOptions
 	{
 		/// <inheritdoc />
@@ -9,6 +13,6 @@ namespace RepoStatusTable.Options.CellProvider
 		public int? Position { get; set; }
 
 		/// <inheritdoc />
-		public string? Heading { get; set; }
+		public string Heading { get; set; } = "Name";
 	}
 }

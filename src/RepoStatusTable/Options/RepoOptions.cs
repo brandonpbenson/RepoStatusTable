@@ -3,10 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RepoStatusTable.Options
 {
-	[SuppressMessage(
-		"ReSharper",
-		"CollectionNeverUpdated.Global",
-		Justification = "Initialization via Options pattern" )]
+	[SuppressMessage( "ReSharper", "CollectionNeverUpdated.Global" )]
+	[SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
 	public class RepoOptions
 	{
 		/// <summary>

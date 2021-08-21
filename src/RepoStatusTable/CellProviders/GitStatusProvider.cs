@@ -18,7 +18,7 @@ namespace RepoStatusTable.CellProviders
 			_gitFacade = gitFacade;
 		}
 
-		public string Heading => _options.Heading ?? "Status";
+		public string Heading => _options.Heading;
 
 		public bool IsEnabled => _options.Enable;
 
@@ -33,7 +33,7 @@ namespace RepoStatusTable.CellProviders
 		}
 
 		private static bool IsStatusChanged( IDictionary<string, int> status ) =>
-			!( status is null || status.All( v => v.Value == 0 ) );
+			!status.All( v => v.Value == 0 );
 
 		private static string GetStatusDescription( IDictionary<string, int> status ) =>
 			$"+{status["Added"]} " +
