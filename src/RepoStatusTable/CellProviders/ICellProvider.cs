@@ -17,6 +17,11 @@ namespace RepoStatusTable.CellProviders
 		public bool IsEnabled { get; }
 
 		/// <summary>
+		///     The configured position of the column in the output table model
+		/// </summary>
+		public int? Position { get; }
+
+		/// <summary>
 		///     Takes a directory path and returns the corresponding cell for the table
 		/// </summary>
 		/// <param name="path">Path to a directory which contains a VCS repo</param>

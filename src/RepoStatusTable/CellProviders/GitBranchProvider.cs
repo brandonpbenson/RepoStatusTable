@@ -20,6 +20,8 @@ namespace RepoStatusTable.CellProviders
 
 		public bool IsEnabled => _options.Enable;
 
+		public int? Position => _options.Position;
+
 		public Task<Cell> GetCell( string path )
 		{
 			var branchName = _gitFacade.GetCurrentBranch( path );

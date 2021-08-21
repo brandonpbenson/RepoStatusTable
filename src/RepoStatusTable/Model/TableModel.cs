@@ -11,9 +11,9 @@ namespace RepoStatusTable.Model
 		private readonly IEnumerable<ICellProvider> _cellProviders;
 		private readonly IReposDirectoryUtility _reposDirectoryUtility;
 
-		public TableModel( IEnumerable<ICellProvider> cellProviders, IReposDirectoryUtility reposDirectoryUtility )
+		public TableModel( ICellProviderManager cellProviderManager, IReposDirectoryUtility reposDirectoryUtility )
 		{
-			_cellProviders = GetEnabledCellProviders( cellProviders );
+			_cellProviders = cellProviderManager.GetOrderedListOfEnabledCellProviders();
 			_reposDirectoryUtility = reposDirectoryUtility;
 		}
 
@@ -28,11 +28,6 @@ namespace RepoStatusTable.Model
 			{
 				yield return GetRowsAsync( dir );
 			}
-		}
-
-		private static IEnumerable<ICellProvider> GetEnabledCellProviders( IEnumerable<ICellProvider> cellProviders )
-		{
-			return cellProviders.Where( p => p.IsEnabled );
 		}
 
 		private async IAsyncEnumerable<string> GetRowsAsync( string path )
