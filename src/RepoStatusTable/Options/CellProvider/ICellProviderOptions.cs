@@ -1,7 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RepoStatusTable.Options.CellProvider
 {
+	[SuppressMessage( "ReSharper", "UnusedMemberInSuper.Global",
+		Justification = "Used as template and for documentation" )]
 	public interface ICellProviderOptions
 	{
 		/// <summary>
@@ -9,7 +12,7 @@ namespace RepoStatusTable.Options.CellProvider
 		/// </summary>
 		/// <value>True to enable, false to disable</value>
 		[Required]
-		public bool Enable { get; set; }
+		public bool Enable { get; }
 
 		/// <summary>
 		///     Absolute position of the column in the table
@@ -19,11 +22,11 @@ namespace RepoStatusTable.Options.CellProvider
 		///     Columns with an explicit position will appear first.
 		///     If two columns want the same position, the order is unspecified.
 		/// </remarks>
-		public int? Position { get; set; }
+		public int? Position { get; }
 
 		/// <summary>
 		///     Optional alternative column heading that appears in the output model
 		/// </summary>
-		public string? Heading { get; set; }
+		public string Heading { get; }
 	}
 }

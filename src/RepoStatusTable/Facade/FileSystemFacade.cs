@@ -19,7 +19,7 @@ namespace RepoStatusTable.Facade
 		string GetDirectoryName( string path );
 
 		/// <inheritdoc cref="Path.Join(string, string)" />
-		string Join( string path1, string path2 );
+		string Join( string? path1, string? path2 );
 
 		/// <inheritdoc cref="DirectoryExists" />
 		bool DirectoryExists( string path );
@@ -46,7 +46,7 @@ namespace RepoStatusTable.Facade
 			return new DirectoryInfo( path ).Name;
 		}
 
-		public string Join( string path1, string path2 )
+		public string Join( string? path1, string? path2 )
 		{
 			return Path.Join( path1, path2 );
 		}

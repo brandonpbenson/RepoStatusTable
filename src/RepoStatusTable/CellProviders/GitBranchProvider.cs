@@ -16,7 +16,7 @@ namespace RepoStatusTable.CellProviders
 			_gitFacade = gitFacade;
 		}
 
-		public string Heading => _options.Heading ?? "Branch";
+		public string Heading => _options.Heading;
 
 		public bool IsEnabled => _options.Enable;
 
