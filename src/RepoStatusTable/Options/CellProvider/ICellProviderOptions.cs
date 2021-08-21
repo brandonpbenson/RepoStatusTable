@@ -12,6 +12,16 @@ namespace RepoStatusTable.Options.CellProvider
 		public bool Enable { get; set; }
 
 		/// <summary>
+		///     Absolute position of the column in the table
+		/// </summary>
+		/// <remarks>
+		///     Specifies the order of the columns.
+		///     Columns with an explicit position will appear first.
+		///     If two columns want the same position, the order is unspecified.
+		/// </remarks>
+		public int? Position { get; set; }
+
+		/// <summary>
 		///     Optional alternative column heading that appears in the output model
 		/// </summary>
 		public string? Heading { get; set; }

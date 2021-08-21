@@ -33,6 +33,7 @@ namespace RepoStatusTable.DependencyInjection
 			_collection.AddSingleton<IFileSystemFacade, FileSystemFacade>();
 
 			// Cell Providers
+			_collection.AddSingleton<ICellProviderManager, CellProviderManager>();
 			_collection.AddSingleton<ICellProvider, DirectoryNameProvider>();
 			_collection.AddSingleton<ICellProvider, GitBranchProvider>();
 			_collection.AddSingleton<ICellProvider, GitStatusProvider>();
