@@ -35,12 +35,16 @@ namespace RepoStatusTable.DependencyInjection
 				configurationRoot.GetSection( OptionsConstants.CellProviders.GitBranchProvider ) );
 			_collection.Configure<GitStatusProviderOptions>(
 				configurationRoot.GetSection( OptionsConstants.CellProviders.GitStatusProvider ) );
+			_collection.Configure<FileContentProviderOptions>(
+				configurationRoot.GetSection( OptionsConstants.CellProviders.FileContentProvider ) );
 		}
 
 		private void AddValidation()
 		{
 			_collection.TryAddEnumerable( ServiceDescriptor
 				.Singleton<IValidateOptions<RepoOptions>, RepoOptionsValidator>() );
+			_collection.TryAddEnumerable( ServiceDescriptor
+				.Singleton<IValidateOptions<FileContentProviderOptions>, FileContentProviderOptionsValidator>() );
 		}
 
 		private static IConfigurationRoot ConfigureConfiguration()
