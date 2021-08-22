@@ -42,6 +42,9 @@ namespace RepoStatusTable.DependencyInjection
 			// Utilities
 			_collection.AddSingleton<IReposDirectoryUtility, ReposDirectoryUtility>();
 
+			// Spectre Console Table
+			_collection.AddSingleton<ISpectreTableFactory, SpectreTableFactory>();
+
 			return this;
 		}
 	}

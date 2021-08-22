@@ -4,6 +4,7 @@ namespace RepoStatusTable.DependencyInjection
 	{
 		public const string Repos = "Repos";
 		public const string TableView = "TableView";
+		public static readonly string SpectreTable = $"{TableView}:SpectreTable";
 
 		public static class CellProviders
 		{
