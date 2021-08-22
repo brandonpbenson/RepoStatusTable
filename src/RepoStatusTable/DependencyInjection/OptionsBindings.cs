@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using RepoStatusTable.Options;
 using RepoStatusTable.Options.CellProvider;
+using RepoStatusTable.Options.SpectreConsole;
 using RepoStatusTable.Options.Validation;
 
 namespace RepoStatusTable.DependencyInjection
@@ -27,6 +28,7 @@ namespace RepoStatusTable.DependencyInjection
 		{
 			_collection.Configure<RepoOptions>( configurationRoot.GetSection( OptionsConstants.Repos ) );
 			_collection.Configure<TableViewOptions>( configurationRoot.GetSection( OptionsConstants.TableView ) );
+			_collection.Configure<SpectreTableOptions>( configurationRoot.GetSection( OptionsConstants.SpectreTable ) );
 
 			// Cell providers
 			_collection.Configure<DirectoryNameProviderOptions>(

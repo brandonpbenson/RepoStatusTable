@@ -1,24 +1,27 @@
 using System.Linq;
 using System.Threading.Tasks;
 using RepoStatusTable.Model;
+using RepoStatusTable.View.SpectreConsoleTableView;
 using Spectre.Console;
 
 namespace RepoStatusTable.View
 {
 	public class SpectreConsoleTableViewLive : ITableViewStrategy
 	{
+		private readonly ISpectreTableFactory _tableFactory;
 		private readonly ITableModel _tableModel;
 
-		public SpectreConsoleTableViewLive( ITableModel tableModel )
+		public SpectreConsoleTableViewLive( ITableModel tableModel, ISpectreTableFactory tableFactory )
 		{
 			_tableModel = tableModel;
+			_tableFactory = tableFactory;
 		}
 
 		public string RenderMethod => "Spectre Table Live";
 
 		public async Task RenderAsync()
 		{
-			var table = new Table().Centered();
+			var table = _tableFactory.CreateFromOptions();
 
 			await AnsiConsole.Live( table )
 				.StartAsync( async ctx =>

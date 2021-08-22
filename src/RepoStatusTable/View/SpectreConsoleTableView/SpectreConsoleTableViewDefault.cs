@@ -7,18 +7,20 @@ namespace RepoStatusTable.View.SpectreConsoleTableView
 {
 	public class SpectreConsoleTableViewDefault : ITableViewStrategy
 	{
+		private readonly ISpectreTableFactory _spectreTableFactory;
 		private readonly ITableModel _tableModel;
 
-		public SpectreConsoleTableViewDefault( ITableModel tableModel )
+		public SpectreConsoleTableViewDefault( ITableModel tableModel, ISpectreTableFactory spectreTableFactory )
 		{
 			_tableModel = tableModel;
+			_spectreTableFactory = spectreTableFactory;
 		}
 
 		public string RenderMethod => "Spectre Table";
 
 		public async Task RenderAsync()
 		{
-			var table = new Table().Centered();
+			var table = _spectreTableFactory.CreateFromOptions();
 
 			RenderHeadings( table );
 			await RenderRows( table );
