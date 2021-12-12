@@ -3,8 +3,10 @@ namespace RepoStatusTable.DependencyInjection
 	public static class OptionsConstants
 	{
 		public const string Repos = "Repos";
-		public const string TableView = "TableView";
-		public static readonly string SpectreTable = $"{TableView}:SpectreTable";
+		public const string Headline = "Headline";
+		public const string Table = "Table";
+		public static readonly string SpectreFiglet = $"{Headline}:SpectreConsoleFiglet";
+		public static readonly string SpectreTable = $"{Table}:SpectreConsoleTable";
 
 		public static class CellProviders
 		{
