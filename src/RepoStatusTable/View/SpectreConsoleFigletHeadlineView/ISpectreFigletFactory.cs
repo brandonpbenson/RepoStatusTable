@@ -1,10 +1,8 @@
 using Spectre.Console;
 
-namespace RepoStatusTable.View.SpectreConsoleFigletHeadlineView
-{
+namespace RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
 
-	public interface ISpectreFigletFactory
-	{
-		FigletText CreateFromOptions( string text );
-	}
+public interface ISpectreFigletFactory
+{
+	FigletText CreateFromOptions( string text );
 }

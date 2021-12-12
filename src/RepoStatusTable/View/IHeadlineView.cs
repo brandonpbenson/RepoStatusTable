@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 
-namespace RepoStatusTable.View
+namespace RepoStatusTable.View;
+
+public interface IHeadlineView
 {
-	public interface IHeadlineView
-	{
-		public Task RenderAsync();
-	}
+	public Task RenderAsync();
 }

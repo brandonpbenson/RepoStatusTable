@@ -1,6 +1,5 @@
-namespace RepoStatusTable.View
+namespace RepoStatusTable.View;
+
+public interface IHeadlineViewStrategy : IHeadlineView
 {
-	public interface IHeadlineViewStrategy : IHeadlineView
-	{
-	}
 }

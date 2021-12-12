@@ -1,10 +1,9 @@
 using Spectre.Console;
 
-namespace RepoStatusTable.Options.SpectreConsole
+namespace RepoStatusTable.Options.SpectreConsole;
+
+public class SpectreFigletOptions
 {
-	public class SpectreFigletOptions
-	{
-		public Justify Alignment { get; set; } = Justify.Center;
-		public SpectreColorOptions Color { get; set; } = new();
-	}
+	public Justify Alignment { get; set; } = Justify.Center;
+	public SpectreColorOptions Color { get; set; } = new();
 }
