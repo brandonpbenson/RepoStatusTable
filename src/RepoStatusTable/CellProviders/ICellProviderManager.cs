@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 
-namespace RepoStatusTable.CellProviders
+namespace RepoStatusTable.CellProviders;
+
+public interface ICellProviderManager
 {
-	public interface ICellProviderManager
-	{
-		IList<ICellProvider> GetOrderedListOfEnabledCellProviders();
-	}
+	IList<ICellProvider> GetOrderedListOfEnabledCellProviders();
 }

@@ -1,20 +1,19 @@
 using Microsoft.Extensions.Options;
 using RepoStatusTable.Options;
 
-namespace RepoStatusTable.Model
+namespace RepoStatusTable.Model;
+
+public class HeadlineModel : IHeadlineModel
 {
-	public class HeadlineModel : IHeadlineModel
+	private readonly HeadlineOptions _options;
+
+	public HeadlineModel( IOptions<HeadlineOptions> options )
 	{
-		private readonly HeadlineOptions _options;
+		_options = options.Value;
+	}
 
-		public HeadlineModel( IOptions<HeadlineOptions> options )
-		{
-			_options = options.Value;
-		}
-
-		public string GetHeadline()
-		{
-			return _options.Text;
-		}
+	public string GetHeadline()
+	{
+		return _options.Text;
 	}
 }

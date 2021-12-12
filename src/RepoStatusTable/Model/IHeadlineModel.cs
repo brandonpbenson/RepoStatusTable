@@ -1,7 +1,6 @@
-namespace RepoStatusTable.Model
+namespace RepoStatusTable.Model;
+
+public interface IHeadlineModel
 {
-	public interface IHeadlineModel
-	{
-		string GetHeadline();
-	}
+	string GetHeadline();
 }

@@ -2,32 +2,31 @@ using Microsoft.Extensions.Options;
 using RepoStatusTable.Options.SpectreConsole;
 using Spectre.Console;
 
-namespace RepoStatusTable.View.SpectreConsoleTableView
+namespace RepoStatusTable.View.SpectreConsoleTableView;
+
+public class SpectreTableFactory : ISpectreTableFactory
 {
-	public class SpectreTableFactory : ISpectreTableFactory
+	private readonly SpectreTableOptions _options;
+
+	public SpectreTableFactory( IOptions<SpectreTableOptions> options )
 	{
-		private readonly SpectreTableOptions _options;
+		_options = options.Value;
+	}
 
-		public SpectreTableFactory( IOptions<SpectreTableOptions> options )
+	public Table CreateFromOptions()
+	{
+		var borderColor = new Style( _options.Color.GetSpectreConsoleColor() );
+
+		var table = new Table()
+			.Alignment( _options.Alignment )
+			.Border( _options.GetTableBorder() )
+			.BorderStyle( borderColor );
+
+		if ( _options.Expand )
 		{
-			_options = options.Value;
+			table.Expand();
 		}
 
-		public Table CreateFromOptions()
-		{
-			var borderColor = new Style( _options.Color.GetSpectreConsoleColor() );
-
-			var table = new Table()
-				.Alignment( _options.Alignment )
-				.Border( _options.GetTableBorder() )
-				.BorderStyle( borderColor );
-
-			if ( _options.Expand )
-			{
-				table.Expand();
-			}
-
-			return table;
-		}
+		return table;
 	}
 }

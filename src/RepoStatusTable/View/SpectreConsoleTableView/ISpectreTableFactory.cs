@@ -1,9 +1,8 @@
 using Spectre.Console;
 
-namespace RepoStatusTable.View.SpectreConsoleTableView
+namespace RepoStatusTable.View.SpectreConsoleTableView;
+
+public interface ISpectreTableFactory
 {
-	public interface ISpectreTableFactory
-	{
-		public Table CreateFromOptions();
-	}
+	public Table CreateFromOptions();
 }

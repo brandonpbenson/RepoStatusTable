@@ -4,51 +4,50 @@ using RepoStatusTable.Model;
 using RepoStatusTable.View.SpectreConsoleTableView;
 using Spectre.Console;
 
-namespace RepoStatusTable.View
+namespace RepoStatusTable.View;
+
+public class SpectreConsoleTableViewLive : ITableViewStrategy
 {
-	public class SpectreConsoleTableViewLive : ITableViewStrategy
+	private readonly ISpectreTableFactory _tableFactory;
+	private readonly ITableModel _tableModel;
+
+	public SpectreConsoleTableViewLive( ITableModel tableModel, ISpectreTableFactory tableFactory )
 	{
-		private readonly ISpectreTableFactory _tableFactory;
-		private readonly ITableModel _tableModel;
+		_tableModel = tableModel;
+		_tableFactory = tableFactory;
+	}
 
-		public SpectreConsoleTableViewLive( ITableModel tableModel, ISpectreTableFactory tableFactory )
+	public string RenderMethod => "Spectre Table Live";
+
+	public async Task RenderAsync()
+	{
+		var table = _tableFactory.CreateFromOptions();
+
+		await AnsiConsole.Live( table )
+			.StartAsync( async ctx =>
+				{
+					RenderHeadings( table, ctx );
+					await RenderRows( table, ctx );
+				}
+			);
+	}
+
+	private void RenderHeadings( Table table, LiveDisplayContext ctx )
+	{
+		foreach ( var heading in _tableModel.GetHeadings() )
 		{
-			_tableModel = tableModel;
-			_tableFactory = tableFactory;
+			table.AddColumn( heading );
+			ctx.Refresh();
 		}
+	}
 
-		public string RenderMethod => "Spectre Table Live";
-
-		public async Task RenderAsync()
+	private async Task RenderRows( Table table, LiveDisplayContext ctx )
+	{
+		await foreach ( var row in _tableModel.GetTableAsync() )
 		{
-			var table = _tableFactory.CreateFromOptions();
-
-			await AnsiConsole.Live( table )
-				.StartAsync( async ctx =>
-					{
-						RenderHeadings( table, ctx );
-						await RenderRows( table, ctx );
-					}
-				);
-		}
-
-		private void RenderHeadings( Table table, LiveDisplayContext ctx )
-		{
-			foreach ( var heading in _tableModel.GetHeadings() )
-			{
-				table.AddColumn( heading );
-				ctx.Refresh();
-			}
-		}
-
-		private async Task RenderRows( Table table, LiveDisplayContext ctx )
-		{
-			await foreach ( var row in _tableModel.GetTableAsync() )
-			{
-				var tableRow = await row.ToArrayAsync();
-				table.AddRow( tableRow );
-				ctx.Refresh();
-			}
+			var tableRow = await row.ToArrayAsync();
+			table.AddRow( tableRow );
+			ctx.Refresh();
 		}
 	}
 }

@@ -1,12 +1,11 @@
-namespace RepoStatusTable.CellProviders
-{
-	public class Cell
-	{
-		public Cell( string content )
-		{
-			Content = content;
-		}
+namespace RepoStatusTable.CellProviders;
 
-		public string Content { get; }
+public class Cell
+{
+	public Cell( string content )
+	{
+		Content = content;
 	}
+
+	public string Content { get; }
 }

@@ -1,7 +1,6 @@
-namespace RepoStatusTable.View
+namespace RepoStatusTable.View;
+
+public interface ITableViewStrategy : ITableView
 {
-	public interface ITableViewStrategy : ITableView
-	{
-		public string RenderMethod { get; }
-	}
+	public string RenderMethod { get; }
 }
