@@ -17,36 +17,41 @@ namespace RepoStatusTable.DependencyInjection
 		public ServiceProviderBuilder ConfigureOptions()
 		{
 			var configurationRoot = ConfigureConfiguration();
-
 			AddOptionsSections( configurationRoot );
-			AddValidation();
-
 			return this;
 		}
 
 		private void AddOptionsSections( IConfiguration configurationRoot )
 		{
-			_collection.Configure<RepoOptions>( configurationRoot.GetSection( OptionsConstants.Repos ) );
-			_collection.Configure<TableViewOptions>( configurationRoot.GetSection( OptionsConstants.TableView ) );
-			_collection.Configure<SpectreTableOptions>( configurationRoot.GetSection( OptionsConstants.SpectreTable ) );
-
-			// Cell providers
-			_collection.Configure<DirectoryNameProviderOptions>(
-				configurationRoot.GetSection( OptionsConstants.CellProviders.DirectoryNameProvider ) );
-			_collection.Configure<GitBranchProviderOptions>(
-				configurationRoot.GetSection( OptionsConstants.CellProviders.GitBranchProvider ) );
-			_collection.Configure<GitStatusProviderOptions>(
-				configurationRoot.GetSection( OptionsConstants.CellProviders.GitStatusProvider ) );
-			_collection.Configure<FileContentProviderOptions>(
-				configurationRoot.GetSection( OptionsConstants.CellProviders.FileContentProvider ) );
-		}
-
-		private void AddValidation()
-		{
+			// VCS Repos
+			_collection.AddOptions<RepoOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.Repos ) );
 			_collection.TryAddEnumerable( ServiceDescriptor
 				.Singleton<IValidateOptions<RepoOptions>, RepoOptionsValidator>() );
-			_collection.TryAddEnumerable( ServiceDescriptor
-				.Singleton<IValidateOptions<FileContentProviderOptions>, FileContentProviderOptionsValidator>() );
+
+			// Output Model
+			_collection.AddOptions<HeadlineOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.Headline ) )
+				.ValidateDataAnnotations();
+			_collection.AddOptions<TableViewOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.Table ) );
+
+			// Spectre Console
+			_collection.AddOptions<SpectreFigletOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.SpectreFiglet ) );
+			_collection.AddOptions<SpectreTableOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.SpectreTable ) );
+
+			// Cell providers
+			_collection.AddOptions<DirectoryNameProviderOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.CellProviders.DirectoryNameProvider ) );
+			_collection.AddOptions<GitBranchProviderOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.CellProviders.GitBranchProvider ) );
+			_collection.AddOptions<GitStatusProviderOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.CellProviders.GitStatusProvider ) );
+			_collection.AddOptions<FileContentProviderOptions>()
+				.Bind( configurationRoot.GetSection( OptionsConstants.CellProviders.FileContentProvider ) )
+				.ValidateDataAnnotations();
 		}
 
 		private static IConfigurationRoot ConfigureConfiguration()

@@ -4,6 +4,7 @@ using RepoStatusTable.Facade;
 using RepoStatusTable.Model;
 using RepoStatusTable.Utilities;
 using RepoStatusTable.View;
+using RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
 using RepoStatusTable.View.SpectreConsoleTableView;
 
 namespace RepoStatusTable.DependencyInjection
@@ -22,10 +23,14 @@ namespace RepoStatusTable.DependencyInjection
 			_collection.AddSingleton<IApplication, Application>();
 
 			// Model and view
+			_collection.AddSingleton<IHeadlineModel, HeadlineModel>();
+			_collection.AddSingleton<IHeadlineView, HeadlineViewProxy>();
+			_collection.AddSingleton<IHeadlineViewStrategy, SpectreConsoleFigletHeadlineView>();
+
 			_collection.AddSingleton<ITableModel, TableModel>();
+			_collection.AddSingleton<ITableView, TableViewProxy>();
 			_collection.AddSingleton<ITableViewStrategy, SpectreConsoleTableViewLive>();
 			_collection.AddSingleton<ITableViewStrategy, SpectreConsoleTableViewDefault>();
-			_collection.AddSingleton<ITableView, TableViewProxy>();
 
 			// Facades
 			_collection.AddSingleton<IVcsFacade, GitFacade>();
@@ -42,7 +47,8 @@ namespace RepoStatusTable.DependencyInjection
 			// Utilities
 			_collection.AddSingleton<IReposDirectoryUtility, ReposDirectoryUtility>();
 
-			// Spectre Console Table
+			// Factories
+			_collection.AddSingleton<ISpectreFigletFactory, SpectreFigletFactory>();
 			_collection.AddSingleton<ISpectreTableFactory, SpectreTableFactory>();
 
 			return this;
