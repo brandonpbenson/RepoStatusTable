@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace RepoStatusTable.Options.CellProvider;
 
 [SuppressMessage( "ReSharper", "UnusedAutoPropertyAccessor.Global" )]

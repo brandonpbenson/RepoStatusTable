@@ -1,7 +1,5 @@
-using Microsoft.Extensions.Options;
 using RepoStatusTable.Options.SpectreConsole;
 using RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
-using Spectre.Console;
 
 namespace RepoStatusTable.View;
 

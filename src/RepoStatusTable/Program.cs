@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RepoStatusTable.DependencyInjection;
+﻿using RepoStatusTable.DependencyInjection;
 
 namespace RepoStatusTable;
 

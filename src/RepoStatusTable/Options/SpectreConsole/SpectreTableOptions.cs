@@ -1,6 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
 using RepoStatusTable.Utilities;
-using Spectre.Console;
 
 namespace RepoStatusTable.Options.SpectreConsole;
 

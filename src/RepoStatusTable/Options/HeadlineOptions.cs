@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace RepoStatusTable.Options;
 
 public class HeadlineOptions

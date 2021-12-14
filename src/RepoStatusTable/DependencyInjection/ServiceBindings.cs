@@ -1,4 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
 using RepoStatusTable.CellProviders;
 using RepoStatusTable.Facade;
 using RepoStatusTable.Model;

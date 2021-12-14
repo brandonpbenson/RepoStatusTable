@@ -1,6 +1,4 @@
-using Microsoft.Extensions.Options;
 using RepoStatusTable.Options.SpectreConsole;
-using Spectre.Console;
 
 namespace RepoStatusTable.View.SpectreConsoleTableView;
 

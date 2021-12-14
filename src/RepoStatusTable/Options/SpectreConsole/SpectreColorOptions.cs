@@ -1,7 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using RepoStatusTable.Utilities;
-using Spectre.Console;
 
 namespace RepoStatusTable.Options.SpectreConsole;
 
