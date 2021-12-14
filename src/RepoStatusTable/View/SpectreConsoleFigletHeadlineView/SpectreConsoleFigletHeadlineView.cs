@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using RepoStatusTable.Model;
 using Spectre.Console;
 

@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-
 namespace RepoStatusTable.CellProviders;
 
 public class CellProviderManager : ICellProviderManager
