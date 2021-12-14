@@ -19,6 +19,7 @@
         <RepositoryUrl>https://github.com/MaxAtoms/RepoStatusTable</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <LangVersion>10</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>

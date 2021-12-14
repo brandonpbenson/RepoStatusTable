@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace RepoStatusTable.CellProviders;
 
 public interface ICellProvider

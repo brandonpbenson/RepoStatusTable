@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Threading.Tasks;
 using RepoStatusTable.Model;
 using RepoStatusTable.View.SpectreConsoleTableView;
 using Spectre.Console;

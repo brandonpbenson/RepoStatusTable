@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace RepoStatusTable.Model;
 
 public interface ITableModel
