@@ -1,5 +1,3 @@
-using Spectre.Console;
-
 namespace RepoStatusTable;
 
 public static class ExceptionHandler

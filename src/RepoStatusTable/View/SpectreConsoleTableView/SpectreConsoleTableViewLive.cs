@@ -1,6 +1,5 @@
 using RepoStatusTable.Model;
 using RepoStatusTable.View.SpectreConsoleTableView;
-using Spectre.Console;
 
 namespace RepoStatusTable.View;
 

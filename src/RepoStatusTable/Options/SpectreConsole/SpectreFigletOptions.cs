@@ -1,5 +1,3 @@
-using Spectre.Console;
-
 namespace RepoStatusTable.Options.SpectreConsole;
 
 public class SpectreFigletOptions

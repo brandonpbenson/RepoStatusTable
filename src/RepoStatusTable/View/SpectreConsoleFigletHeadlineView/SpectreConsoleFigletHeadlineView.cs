@@ -1,5 +1,4 @@
 using RepoStatusTable.Model;
-using Spectre.Console;
 
 namespace RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
 

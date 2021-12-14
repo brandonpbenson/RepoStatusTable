@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Options;
 using RepoStatusTable.Options;
 
 namespace RepoStatusTable.Model;

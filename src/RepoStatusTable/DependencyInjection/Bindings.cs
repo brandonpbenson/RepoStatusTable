@@ -1,5 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-
 namespace RepoStatusTable.DependencyInjection;
 
 public static class Bindings

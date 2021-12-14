@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Options;
 using RepoStatusTable.Facade;
 
 namespace RepoStatusTable.Options.Validation;

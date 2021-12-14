@@ -1,6 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-
 namespace RepoStatusTable.Options.CellProvider;
 
 [SuppressMessage( "ReSharper", "UnusedMemberInSuper.Global",
