@@ -34,7 +34,7 @@ public static class SpectreColorExtensions
 
 	private static Color ColorFromName( SpectreColorOptions options )
 	{
-		return ReflectionUtility.GetValueOfProperty<Color, Color>( options.Value, new Color() );
+		return ReflectionUtility.GetValueOfProperty<Color>( options.Value, new Color() );
 	}
 
 	private static Color ColorFromRgb( string rgbColorCode )

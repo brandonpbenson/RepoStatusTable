@@ -19,6 +19,6 @@ public static class SpectreTableExtensions
 {
 	public static TableBorder GetTableBorder( this SpectreTableOptions options )
 	{
-		return ReflectionUtility.GetValueOfProperty<TableBorder, TableBorder>( options.Border, null );
+		return ReflectionUtility.GetValueOfProperty<TableBorder>( options.Border, null );
 	}
 }
