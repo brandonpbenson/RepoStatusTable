@@ -1,3 +1,5 @@
+using RepoStatusTable.Options.Validation;
+
 namespace RepoStatusTable.Options.CellProvider;
 
 [SuppressMessage( "ReSharper", "UnusedAutoPropertyAccessor.Global" )]
@@ -13,7 +15,7 @@ public class FileContentProviderOptions : ICellProviderOptions
 	/// <example>
 	///     If you have a file containing the project version in each repo, you can output it in the table.
 	/// </example>
-	[Required]
+	[RequiredIfEnabled]
 	public string? Path { get; set; }
 
 	/// <summary>

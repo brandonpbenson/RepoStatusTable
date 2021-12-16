@@ -4,7 +4,12 @@ public static class ReflectionUtility
 {
 	public static T GetValueOfProperty<T>( string propertyName, object? obj )
 	{
-		var allProps = typeof(T).GetProperties();
+		return GetValueOfProperty<T>( typeof(T), obj, propertyName );
+	}
+
+	public static T GetValueOfProperty<T>( Type type, object? obj, string propertyName )
+	{
+		var allProps = type.GetProperties();
 		var requiredProp = allProps.FirstOrDefault( s =>
 			string.Equals( s.Name, propertyName, StringComparison.CurrentCultureIgnoreCase ) );
 
