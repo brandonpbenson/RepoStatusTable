@@ -7,7 +7,7 @@ public class RepoOptions
 	/// <summary>
 	///     List of directories that may contain multiple VSC repositories
 	/// </summary>
-	public IList<string> ReposRoot { get; set; } = new List<string>();
+	public IList<string> RepoRoots { get; set; } = new List<string>();
 
 	/// <summary>
 	///     List of paths to directories

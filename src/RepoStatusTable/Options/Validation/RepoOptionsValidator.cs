@@ -17,7 +17,7 @@ public class RepoOptionsValidator : IValidateOptions<RepoOptions>
 	{
 		var errors = new List<string>();
 		errors.AddRange( ValidateRepoDirs( options.RepoDirs ) );
-		errors.AddRange( ValidateReposRoot( options.ReposRoot ) );
+		errors.AddRange( ValidateReposRoot( options.RepoRoots ) );
 
 		return errors.Count != 0
 			? ValidateOptionsResult.Fail( errors )
