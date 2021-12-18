@@ -15,6 +15,6 @@ public class HeadlineViewProxy : IHeadlineView
 
 	public Task RenderAsync()
 	{
-		return _options.Enable is true ? _strategy.RenderAsync() : Task.CompletedTask;
+		return _options.Enable ? _strategy.RenderAsync() : Task.CompletedTask;
 	}
 }

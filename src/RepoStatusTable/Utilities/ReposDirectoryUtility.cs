@@ -39,7 +39,7 @@ public class ReposDirectoryUtility : IReposDirectoryUtility
 
 	private IEnumerable<string> GetAllDirsInRoots()
 	{
-		var rootDirs = _repoOptions.ReposRoot;
+		var rootDirs = _repoOptions.RepoRoots;
 		return rootDirs
 			.Select( _fileSystemFacade.GetDirectories )
 			.SelectMany( p => p );
