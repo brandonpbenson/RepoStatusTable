@@ -9,7 +9,7 @@ public interface ICellProviderOptions
 	/// </summary>
 	/// <value>True to enable, false to disable</value>
 	[Required]
-	public bool Enable { get; }
+	public bool Enable { get; set; }
 
 	/// <summary>
 	///     Absolute position of the column in the table
@@ -19,10 +19,10 @@ public interface ICellProviderOptions
 	///     Columns with an explicit position will appear first.
 	///     If two columns want the same position, the order is unspecified.
 	/// </remarks>
-	public int? Position { get; }
+	public int? Position { get; set; }
 
 	/// <summary>
 	///     Optional alternative column heading that appears in the output model
 	/// </summary>
-	public string Heading { get; }
+	public string Heading { get; set; }
 }

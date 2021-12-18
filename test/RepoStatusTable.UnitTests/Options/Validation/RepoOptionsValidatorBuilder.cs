@@ -1,4 +1,3 @@
-using Moq;
 using RepoStatusTable.Facade;
 using RepoStatusTable.Options.Validation;
 
