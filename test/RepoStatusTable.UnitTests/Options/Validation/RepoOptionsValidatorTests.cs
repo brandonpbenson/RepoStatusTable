@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using RepoStatusTable.Options;
 
 namespace RepoStatusTable.UnitTests.Options.Validation;
