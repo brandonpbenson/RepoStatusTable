@@ -5,6 +5,8 @@ namespace RepoStatusTable.UnitTests.CellProviders;
 
 public abstract class CellProviderTests
 {
+	protected const string DirectoryPath = "/a/path";
+
 	// ReSharper disable once UnusedMemberInSuper.Global
 	// Used as test method
 	public abstract void CellProvider_WithOptions_ShouldUse();
