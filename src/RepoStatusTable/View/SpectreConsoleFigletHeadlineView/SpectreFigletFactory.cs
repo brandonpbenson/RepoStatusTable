@@ -1,9 +1,8 @@
 using RepoStatusTable.Options.SpectreConsole;
-using RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
 
-namespace RepoStatusTable.View;
+namespace RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
 
-internal class SpectreFigletFactory : ISpectreFigletFactory
+public class SpectreFigletFactory : ISpectreFigletFactory
 {
 	private readonly SpectreFigletOptions _options;
 

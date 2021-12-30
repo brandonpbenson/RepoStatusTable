@@ -26,15 +26,14 @@ public class ReposDirectoryUtility : IReposDirectoryUtility
 		repos.AddRange( GetAllRepoDirs() );
 		repos.AddRange( GetAllDirsInRoots() );
 
-		return repos.Where( d =>
-			_fileSystemFacade.DirectoryExists( d )
-			&& _vcsFacade.IsVcsRepo( d )
-		);
+		return repos.Where( d => _vcsFacade.IsVcsRepo( d ) );
 	}
 
 	private IEnumerable<string> GetAllRepoDirs()
 	{
-		return _repoOptions.RepoDirs.Select( _fileSystemFacade.GetFullPath );
+		return _repoOptions.RepoDirs
+			.Where( _fileSystemFacade.DirectoryExists )
+			.Select( _fileSystemFacade.GetFullPath );
 	}
 
 	private IEnumerable<string> GetAllDirsInRoots()
