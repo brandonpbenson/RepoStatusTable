@@ -9,9 +9,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      RELEASE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/'
+      RELEASE_PATH: './src/RepoStatusTable/bin/Release/net6.0/publish/'
       RELEASE_ARCHIVE: 'RepoStatusTable.linux-amd64.zip'
-      RELEASE_ARCHIVE_PATH: './src/RepoStatusTable/bin/Release/net5.0/publish/RepoStatusTable.linux-amd64.zip'
+      RELEASE_ARCHIVE_PATH: './src/RepoStatusTable/bin/Release/net6.0/publish/RepoStatusTable.linux-amd64.zip'
       RELEASE_NUPKG: 'RepoStatusTable.linux-amd64.nupkg'
       RELEASE_NUPKG_PATH: './src/RepoStatusTable/nupkg/*.nupkg'
       DOTNET_NOLOGO: true
@@ -22,7 +22,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v1.8.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
 
       - name: Install Dependencies
         working-directory: ./src/
