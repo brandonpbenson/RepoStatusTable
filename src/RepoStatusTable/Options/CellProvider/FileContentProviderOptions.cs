@@ -30,7 +30,7 @@ public class FileContentProviderOptions : ICellProviderOptions
 	public int NumberOfLines { get; set; } = 1;
 
 	/// <inheritdoc />
-	public bool Enable { get; set; } = true;
+	public bool Enable { get; set; } = false;
 
 	/// <inheritdoc />
 	public int? Position { get; set; }
