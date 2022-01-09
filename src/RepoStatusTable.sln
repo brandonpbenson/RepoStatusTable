@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoStatusTable", "RepoStat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoStatusTable.UnitTests", "..\test\RepoStatusTable.UnitTests\RepoStatusTable.UnitTests.csproj", "{6C024B51-00C3-4F29-A772-4B3A245FCCB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepoStatusTable.IntegrationTests", "..\test\RepoStatusTable.IntegrationTests\RepoStatusTable.IntegrationTests.csproj", "{AC43FB84-158E-40F6-B5E7-0FE05FA29052}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C024B51-00C3-4F29-A772-4B3A245FCCB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC43FB84-158E-40F6-B5E7-0FE05FA29052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC43FB84-158E-40F6-B5E7-0FE05FA29052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC43FB84-158E-40F6-B5E7-0FE05FA29052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC43FB84-158E-40F6-B5E7-0FE05FA29052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
