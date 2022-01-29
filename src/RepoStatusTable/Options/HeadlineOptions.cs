@@ -1,8 +1,10 @@
+using RepoStatusTable.Options.Validation;
+
 namespace RepoStatusTable.Options;
 
 public class HeadlineOptions
 {
-	public bool Enable { get; set; } = false;
+	public bool Enable { get; set; }
 
-	[Required] public string Text { get; set; }
+	[RequiredIfEnabled] public string Text { get; set; }
 }
