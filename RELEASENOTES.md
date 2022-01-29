@@ -1,7 +1,9 @@
+First public release
+
 ## Breaking change
 
-- The configuration section `ReposRoot` has been renamed to `RepoRoots`
+A configuration file directly in the program directory is no longer considered.
 
-## New features
+## Bug fix
 
-- Headline functionality: Show a headline above the table with customizable text
+Headline text is only required if the headline is enabled.
