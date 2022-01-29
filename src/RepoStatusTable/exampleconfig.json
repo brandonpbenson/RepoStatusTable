@@ -1,0 +1,57 @@
+{
+	"Repos": {
+		"ReposRoot": [
+			"/path/to/a/directory/containing/multiple/repos",
+			"/another/path/to/a/directory/containing/multiple/repos"
+		],
+		"RepoDirs": [
+			"/path/to/a/git/repo",
+			"/path/to/another/git/repo"
+		]
+	},
+	"Headline": {
+		"Enable": true,
+		"Text": "Some Headline",
+		"SpectreConsoleFiglet": {
+			"Alignment": "Center",
+			"Color": {
+				"Notation": "RGB",
+				"Value": "255,0,0"
+			}
+		}
+	},
+	"Table": {
+		"RenderMethod": "Spectre Table Live",
+		"SpectreConsoleTable": {
+			"Alignment": "Center",
+			"Border": "Horizontal",
+			"Expand": false,
+			"Color": {
+				"Notation": "RGB",
+				"Value": "255,0,0"
+			}
+		}
+	},
+	"CellProviders": {
+		"DirectoryNameProvider": {
+			"Position": 0,
+			"Enable": true
+		},
+		"GitBranchProvider": {
+			"Position": 1,
+			"Enable": true
+		},
+		"FileContentProvider": {
+			"Position": 2,
+			"Enable": false,
+			"Heading": "Version",
+			"NumberOfLines": 1,
+			"IgnoreMissingFiles": true,
+			"Path": "VersionFile.txt"
+		},
+		"GitStatusProvider": {
+			"Position": 3,
+			"Enable": true
+		}
+	}
+}

@@ -55,7 +55,6 @@ public partial class ServiceProviderBuilder
 
 		configurationBuilder.Sources.Clear();
 		configurationBuilder
-			.AddJsonFile( "config.json", true )
 			.AddJsonFile( GetAppDataDirConfigPath(), true )
 			.AddJsonFile( GetWorkingDirConfigPath(), true );
 
