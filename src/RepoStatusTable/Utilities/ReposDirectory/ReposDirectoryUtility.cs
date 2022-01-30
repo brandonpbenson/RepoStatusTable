@@ -1,21 +1,24 @@
 using RepoStatusTable.Facade;
 using RepoStatusTable.Options;
 
-namespace RepoStatusTable.Utilities;
+namespace RepoStatusTable.Utilities.ReposDirectory;
 
 public class ReposDirectoryUtility : IReposDirectoryUtility
 {
 	private readonly IFileSystemFacade _fileSystemFacade;
 	private readonly RepoOptions _repoOptions;
+	private readonly IReposOrderProvider _reposOrderProvider;
 	private readonly IVcsFacade _vcsFacade;
 
 	public ReposDirectoryUtility(
 		IOptions<RepoOptions> repoOptions,
 		IFileSystemFacade fileSystemFacade,
-		IVcsFacade vcsFacade )
+		IVcsFacade vcsFacade,
+		IReposOrderProvider reposOrderProvider )
 	{
 		_fileSystemFacade = fileSystemFacade;
 		_vcsFacade = vcsFacade;
+		_reposOrderProvider = reposOrderProvider;
 		_repoOptions = repoOptions.Value;
 	}
 
@@ -27,7 +30,7 @@ public class ReposDirectoryUtility : IReposDirectoryUtility
 		repos.AddRange( GetAllDirsInRoots() );
 
 		var directories = repos.Where( d => _vcsFacade.IsVcsRepo( d ) );
-		return directories.OrderBy( d => d );
+		return _reposOrderProvider.OrderAccordingToOptions( directories );
 	}
 
 	private IEnumerable<string> GetAllRepoDirs()

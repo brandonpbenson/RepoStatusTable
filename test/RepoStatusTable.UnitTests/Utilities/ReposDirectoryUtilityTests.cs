@@ -15,6 +15,7 @@ public class ReposDirectoryUtilityTests
 	{
 		var builder = new ReposDirectoryUtilityBuilder();
 		var result = builder
+			.WithReposOrderProvider()
 			.Build()
 			.GetRepoDirectories();
 
@@ -40,7 +41,8 @@ public class ReposDirectoryUtilityTests
 			.WithFileSystemFacadeDirectoryExists( RepoPathD, true )
 			.WithVscFacadeIsValid( RepoPathA, true )
 			.WithVscFacadeIsValid( RepoPathC, false )
-			.WithVscFacadeIsValid( RepoPathD, true );
+			.WithVscFacadeIsValid( RepoPathD, true )
+			.WithReposOrderProvider( RepoPathA, RepoPathD );
 
 		var uut = builder.Build();
 
@@ -67,6 +69,7 @@ public class ReposDirectoryUtilityTests
 			.WithVscFacadeIsValid( "repoAB", false )
 			.WithVscFacadeIsValid( "repoBA", false )
 			.WithVscFacadeIsValid( "repoBB", true )
+			.WithReposOrderProvider( "repoAA", "repoBB" )
 			.Build();
 
 		var result = uut.GetRepoDirectories().ToList();
@@ -75,36 +78,6 @@ public class ReposDirectoryUtilityTests
 		{
 			"repoAA",
 			"repoBB"
-		};
-
-		Assert.AreEqual( expected, result );
-	}
-
-	[Test]
-	public void GetRepoDirectories_WithUnorderedRepos_ShouldReturnAlphabeticalOrder()
-	{
-		var uut = new ReposDirectoryUtilityBuilder()
-			.WithRepoOptionsRepoDir( RepoPathD )
-			.WithRepoOptionsRepoDir( RepoPathA )
-			.WithRepoOptionsRepoDir( RepoPathB )
-			.WithFileSystemFacadeDirectoryExists( RepoPathD, true )
-			.WithFileSystemFacadeDirectoryExists( RepoPathA, true )
-			.WithFileSystemFacadeDirectoryExists( RepoPathB, true )
-			.WithFileSystemFacadeGetFullPathReturns( RepoPathB )
-			.WithFileSystemFacadeGetFullPathReturns( RepoPathA )
-			.WithFileSystemFacadeGetFullPathReturns( RepoPathD )
-			.WithVscFacadeIsValid( RepoPathD, true )
-			.WithVscFacadeIsValid( RepoPathA, true )
-			.WithVscFacadeIsValid( RepoPathB, true )
-			.Build();
-
-		var result = uut.GetRepoDirectories().ToList();
-
-		var expected = new List<string>
-		{
-			RepoPathA,
-			RepoPathB,
-			RepoPathD
 		};
 
 		Assert.AreEqual( expected, result );

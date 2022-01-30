@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using RepoStatusTable.Facade;
 using RepoStatusTable.Options;
 using RepoStatusTable.Utilities;
+using RepoStatusTable.Utilities.ReposDirectory;
 
 namespace RepoStatusTable.UnitTests.Utilities;
 
@@ -16,6 +17,8 @@ public class ReposDirectoryUtilityBuilder
 		RepoDirs = new List<string>(),
 		RepoRoots = new List<string>()
 	};
+
+	private readonly Mock<IReposOrderProvider> _reposOrderProvider = new(MockBehavior.Strict);
 
 	private readonly Mock<IVcsFacade> _vscFacade = new(MockBehavior.Strict);
 
@@ -55,11 +58,20 @@ public class ReposDirectoryUtilityBuilder
 		return this;
 	}
 
+	public ReposDirectoryUtilityBuilder WithReposOrderProvider( params string[] dirs )
+	{
+		_reposOrderProvider.Setup( m => m.OrderAccordingToOptions( dirs ) )
+			.Returns( dirs );
+		return this;
+	}
+
 	public IReposDirectoryUtility Build()
 	{
 		return new ReposDirectoryUtility( new OptionsWrapper<RepoOptions>( _repoOptions ),
 			_fileSystemFacade.Object,
-			_vscFacade.Object );
+			_vscFacade.Object,
+			_reposOrderProvider.Object
+		);
 	}
 
 	public void VerifyNoOtherCalls()

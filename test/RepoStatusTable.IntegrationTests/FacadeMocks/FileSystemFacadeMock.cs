@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Moq;
 using RepoStatusTable.Facade;
@@ -36,5 +37,10 @@ public class FileSystemFacadeMock : IFileSystemFacade
 	public IEnumerable<string> ReadText( string path )
 	{
 		return InternalMock.Object.ReadText( path );
+	}
+
+	public DateTime GetLastWriteTime( string path )
+	{
+		return InternalMock.Object.GetLastWriteTime( path );
 	}
 }

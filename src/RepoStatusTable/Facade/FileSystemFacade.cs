@@ -23,6 +23,9 @@ public interface IFileSystemFacade
 
 	/// <inheritdoc cref="File.ReadLines(string)" />
 	IEnumerable<string> ReadText( string path );
+
+	/// <inheritdoc cref="Directory.GetLastWriteTime(string)" />
+	DateTime GetLastWriteTime( string path );
 }
 
 public class FileSystemFacade : IFileSystemFacade
@@ -56,5 +59,10 @@ public class FileSystemFacade : IFileSystemFacade
 	public IEnumerable<string> ReadText( string path )
 	{
 		return File.ReadLines( path );
+	}
+
+	public DateTime GetLastWriteTime( string path )
+	{
+		return Directory.GetLastWriteTime( path );
 	}
 }
