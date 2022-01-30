@@ -14,6 +14,7 @@ using RepoStatusTable.Options.CellProvider;
 using RepoStatusTable.Options.SpectreConsole;
 using RepoStatusTable.Options.Validation;
 using RepoStatusTable.Utilities;
+using RepoStatusTable.Utilities.ReposDirectory;
 using RepoStatusTable.View;
 using RepoStatusTable.View.SpectreConsoleFigletHeadlineView;
 using RepoStatusTable.View.SpectreConsoleTableView;
@@ -69,6 +70,7 @@ public class TestServiceProviderBuilder
 
 		// Utilities
 		_collection.AddSingleton<IReposDirectoryUtility, ReposDirectoryUtility>();
+		_collection.AddSingleton<IReposOrderProvider, ReposOrderProvider>();
 
 		// Factories
 		_collection.AddSingleton<ISpectreFigletFactory, SpectreFigletFactory>();
