@@ -79,4 +79,34 @@ public class ReposDirectoryUtilityTests
 
 		Assert.AreEqual( expected, result );
 	}
+
+	[Test]
+	public void GetRepoDirectories_WithUnorderedRepos_ShouldReturnAlphabeticalOrder()
+	{
+		var uut = new ReposDirectoryUtilityBuilder()
+			.WithRepoOptionsRepoDir( RepoPathD )
+			.WithRepoOptionsRepoDir( RepoPathA )
+			.WithRepoOptionsRepoDir( RepoPathB )
+			.WithFileSystemFacadeDirectoryExists( RepoPathD, true )
+			.WithFileSystemFacadeDirectoryExists( RepoPathA, true )
+			.WithFileSystemFacadeDirectoryExists( RepoPathB, true )
+			.WithFileSystemFacadeGetFullPathReturns( RepoPathB )
+			.WithFileSystemFacadeGetFullPathReturns( RepoPathA )
+			.WithFileSystemFacadeGetFullPathReturns( RepoPathD )
+			.WithVscFacadeIsValid( RepoPathD, true )
+			.WithVscFacadeIsValid( RepoPathA, true )
+			.WithVscFacadeIsValid( RepoPathB, true )
+			.Build();
+
+		var result = uut.GetRepoDirectories().ToList();
+
+		var expected = new List<string>
+		{
+			RepoPathA,
+			RepoPathB,
+			RepoPathD
+		};
+
+		Assert.AreEqual( expected, result );
+	}
 }
