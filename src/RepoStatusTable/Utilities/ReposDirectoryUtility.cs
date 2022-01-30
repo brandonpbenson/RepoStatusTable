@@ -26,7 +26,8 @@ public class ReposDirectoryUtility : IReposDirectoryUtility
 		repos.AddRange( GetAllRepoDirs() );
 		repos.AddRange( GetAllDirsInRoots() );
 
-		return repos.Where( d => _vcsFacade.IsVcsRepo( d ) );
+		var directories = repos.Where( d => _vcsFacade.IsVcsRepo( d ) );
+		return directories.OrderBy( d => d );
 	}
 
 	private IEnumerable<string> GetAllRepoDirs()

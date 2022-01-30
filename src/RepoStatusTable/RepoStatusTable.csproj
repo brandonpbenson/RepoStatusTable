@@ -49,4 +49,12 @@
         </None>
     </ItemGroup>
 
+    <ItemGroup>
+        <Folder Include="TypeWrappers"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="TypeWrappers\RecordTypeWrappers.cs"/>
+    </ItemGroup>
+
 </Project>
