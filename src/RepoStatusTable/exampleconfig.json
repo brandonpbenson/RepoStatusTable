@@ -7,7 +7,9 @@
 		"RepoDirs": [
 			"/path/to/a/git/repo",
 			"/path/to/another/git/repo"
-		]
+		],
+		"Order": "Descending",
+		"OrderBy": "LastModified"
 	},
 	"Headline": {
 		"Enable": true,

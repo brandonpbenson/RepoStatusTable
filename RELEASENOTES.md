@@ -1,9 +1,5 @@
-First public release
+Version 0.6 introduces table order options
 
-## Breaking change
+## New features 
 
-A configuration file directly in the program directory is no longer considered.
-
-## Bug fix
-
-Headline text is only required if the headline is enabled.
+- Repos in the table can now be sorted either alphabetically or according to their last modification. Ascending as well as descending can be set as options.
