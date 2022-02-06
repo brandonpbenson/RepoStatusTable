@@ -7,7 +7,7 @@ public class GitBranchProviderOptions : ICellProviderOptions
 	/// <summary>
 	///     List of branches that are considered as not changed
 	/// </summary>
-	public IEnumerable<string> DefaultBranches { get; set; } = new List<string>();
+	public IEnumerable<string>? DefaultBranches { get; set; }
 
 	/// <inheritdoc />
 	public bool Enable { get; set; } = true;
