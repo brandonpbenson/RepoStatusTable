@@ -42,7 +42,7 @@ public class SpectreConsoleTableViewLive : ITableViewStrategy
 	{
 		await foreach ( var row in _tableModel.GetTableAsync() )
 		{
-			var tableRow = await row.ToArrayAsync();
+			var tableRow = row.ToArray();
 			table.AddRow( tableRow );
 			ctx.Refresh();
 		}

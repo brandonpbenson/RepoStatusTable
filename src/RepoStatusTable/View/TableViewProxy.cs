@@ -4,10 +4,10 @@ namespace RepoStatusTable.View;
 
 public class TableViewProxy : ITableView
 {
-	private readonly TableViewOptions _options;
+	private readonly TableOptions _options;
 	private readonly IEnumerable<ITableViewStrategy> _tableViewStrategies;
 
-	public TableViewProxy( IOptions<TableViewOptions> options, IEnumerable<ITableViewStrategy> tableViewStrategies )
+	public TableViewProxy( IOptions<TableOptions> options, IEnumerable<ITableViewStrategy> tableViewStrategies )
 	{
 		_tableViewStrategies = tableViewStrategies;
 		_options = options.Value;

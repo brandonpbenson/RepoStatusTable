@@ -18,5 +18,5 @@ public interface ITableModel
 	/// <returns>
 	///     Table as a list of rows each containing cells
 	/// </returns>
-	IAsyncEnumerable<IAsyncEnumerable<string>> GetTableAsync();
+	IAsyncEnumerable<IEnumerable<string>> GetTableAsync();
 }

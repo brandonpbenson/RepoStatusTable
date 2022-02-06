@@ -7,7 +7,6 @@ public interface ICellProvider
 	/// </summary>
 	public string Heading { get; }
 
-
 	/// <summary>
 	///     Determine whether the output of the cell provider should be shown in the output model
 	/// </summary>
