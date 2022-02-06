@@ -32,6 +32,6 @@ public class GitBranchProvider : ICellProvider
 
 	private bool IsChanged( string branch )
 	{
-		return _options.DefaultBranches.Contains( branch );
+		return !_options.DefaultBranches.Contains( branch );
 	}
 }
