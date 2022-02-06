@@ -110,7 +110,7 @@ public class TestServiceProviderBuilder
 		_collection.AddOptions<HeadlineOptions>()
 			.Bind( configurationRoot.GetSection( OptionsConstants.Headline ) )
 			.ValidateDataAnnotations();
-		_collection.AddOptions<TableViewOptions>()
+		_collection.AddOptions<TableOptions>()
 			.Bind( configurationRoot.GetSection( OptionsConstants.Table ) );
 
 		// Spectre Console
