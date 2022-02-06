@@ -24,6 +24,7 @@
 	},
 	"Table": {
 		"RenderMethod": "Spectre Table Live",
+		"OnlyShowChanged": false,
 		"SpectreConsoleTable": {
 			"Alignment": "Center",
 			"Border": "Horizontal",
@@ -41,7 +42,11 @@
 		},
 		"GitBranchProvider": {
 			"Position": 1,
-			"Enable": true
+			"Enable": true,
+			"DefaultBranches": [
+				"develop",
+				"master"
+			]
 		},
 		"FileContentProvider": {
 			"Position": 2,

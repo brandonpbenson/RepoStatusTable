@@ -25,12 +25,12 @@ public class GitStatusProvider : ICellProvider
 		var status = _gitFacade.GetStatus( directory );
 
 		return Task.FromResult(
-			new Cell( GetStatusDescription( status ) ) );
+			new Cell( GetStatusDescription( status ), IsStatusChanged( status ) ) );
 	}
 
 	private static bool IsStatusChanged( IDictionary<string, int> status )
 	{
-		return !status.All( v => v.Value == 0 );
+		return status.Any( v => v.Value != 0 );
 	}
 
 	private static string GetStatusDescription( IDictionary<string, int> status )

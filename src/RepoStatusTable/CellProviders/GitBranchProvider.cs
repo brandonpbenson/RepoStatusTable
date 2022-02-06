@@ -25,7 +25,13 @@ public class GitBranchProvider : ICellProvider
 		var branchName = _gitFacade.GetCurrentBranch( path );
 
 		return Task.FromResult( new Cell(
-			branchName
+			branchName,
+			IsChanged( branchName )
 		) );
+	}
+
+	private bool IsChanged( string branch )
+	{
+		return _options.DefaultBranches.Contains( branch );
 	}
 }

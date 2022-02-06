@@ -27,7 +27,7 @@ public class TableViewAsserter : ITableViewStrategy
 	{
 		var headings = _tableModel.GetHeadings().ToList();
 		var enumTable = await _tableModel.GetTableAsync().ToListAsync();
-		var table = await Task.WhenAll( enumTable.Select( async r => await r.ToListAsync() ) );
+		var table = enumTable.Select( r => r.ToList() );
 
 		AssertHeadings( headings );
 		AssertTable( table );

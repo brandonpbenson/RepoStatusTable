@@ -1,4 +1,5 @@
 using RepoStatusTable.CellProviders;
+using RepoStatusTable.Options;
 using RepoStatusTable.Utilities;
 
 namespace RepoStatusTable.Model;
@@ -7,11 +8,14 @@ public class TableModel : ITableModel
 {
 	private readonly IEnumerable<ICellProvider> _cellProviders;
 	private readonly IReposDirectoryUtility _reposDirectoryUtility;
+	private readonly TableOptions _tableOptions;
 
-	public TableModel( ICellProviderManager cellProviderManager, IReposDirectoryUtility reposDirectoryUtility )
+	public TableModel( ICellProviderManager cellProviderManager, IReposDirectoryUtility reposDirectoryUtility,
+		IOptions<TableOptions> tableOptions )
 	{
 		_cellProviders = cellProviderManager.GetOrderedListOfEnabledCellProviders();
 		_reposDirectoryUtility = reposDirectoryUtility;
+		_tableOptions = tableOptions.Value;
 	}
 
 	public IEnumerable<string> GetHeadings()
@@ -19,22 +23,26 @@ public class TableModel : ITableModel
 		return _cellProviders.Select( p => p.Heading );
 	}
 
-	public async IAsyncEnumerable<IAsyncEnumerable<string>> GetTableAsync()
+	public async IAsyncEnumerable<IEnumerable<string>> GetTableAsync()
 	{
 		if ( !_cellProviders.Any() )
 		{
 			throw new ArgumentException( "No cell providers are enabled" );
 		}
 
-		foreach ( var dir in _reposDirectoryUtility.GetRepoDirectories() ) yield return GetRowsAsync( dir );
+		foreach ( var dir in _reposDirectoryUtility.GetRepoDirectories() )
+		{
+			var row = ( await GetRowAsync( dir ) ).ToList();
+			if ( _tableOptions.OnlyShowChanged == false || row.Any( r => r.IsChanged ) )
+			{
+				yield return row.Select( r => r.Content );
+			}
+		}
 	}
 
-	private async IAsyncEnumerable<string> GetRowsAsync( string path )
+	private async Task<IEnumerable<Cell>> GetRowAsync( string path )
 	{
-		foreach ( var provider in _cellProviders )
-		{
-			var cell = await provider.GetCell( path );
-			yield return cell.Content;
-		}
+		var cellTasks = _cellProviders.Select( p => p.GetCell( path ) );
+		return await Task.WhenAll( cellTasks );
 	}
 }
