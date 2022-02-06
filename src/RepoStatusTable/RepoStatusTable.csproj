@@ -50,11 +50,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="TypeWrappers"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <Compile Remove="TypeWrappers\RecordTypeWrappers.cs"/>
+        <Compile Remove="TypeWrappers.cs"/>
     </ItemGroup>
 
 </Project>
